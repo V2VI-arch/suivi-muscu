@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="KSPariSport - Pronostics sportifs et paris en ligne. Obtenez les meilleures prédictions pour vos paris sportifs.">
+  <meta name="theme-color" content="#4f46e5">
+  <title>KSPariSport — Accueil</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-main">Aller au contenu principal</a>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="KSPariSport - retour à l'accueil">KSPariSport</a>
+      <nav class="nav" role="navigation" aria-label="Navigation principale">
+        <a href="index.html" aria-current="page">Accueil</a>
+        <a href="offers.html">Offres VIP</a>
+        <a href="main.html" class="btn">Tous les comptes</a>
+        <a href="account.html">Mon compte</a>
+        <button id="openSignup" class="btn primary">Inscription</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="main-content" role="main">
+    <h1>KSPariSport - Restez concentré, on fait rentrer</h1>
+    <p class="slogan">Votre destination pour les pronostics foot les plus précis</p>
+    
+    <section class="matches-section" aria-labelledby="matches-title">
+      <h2 id="matches-title">Matchs Tendances</h2>
+      <div id="trendingMatches" class="matches-grid" role="list">
+        <!-- Les matchs seront insérés ici via JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal d'inscription -->
+  <div id="signupModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+      <button class="close" id="closeSignup" aria-label="Fermer le formulaire d'inscription">×</button>
+      <h2 id="signupTitle">Inscription</h2>
+      <form id="signupForm" novalidate>
+        <div class="form-group">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" required aria-required="true" aria-describedby="name-help">
+          <span id="name-help" class="help-text">Entrez votre nom complet</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required aria-required="true" aria-describedby="email-help">
+          <span id="email-help" class="help-text">Entrez votre adresse email</span>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" required minlength="6" aria-required="true" aria-describedby="password-help">
+          <span id="password-help" class="help-text">Le mot de passe doit contenir au moins 6 caractères</span>
+        </div>
+        <button type="submit" class="btn primary">S'inscrire</button>
+      </form>
+      <p class="small">Déjà inscrit ? <a href="account.html">Accéder à mon compte</a></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Suivez-nous</h3>
+          <ul class="social-links">
+            <li><a href="https://twitter.com/KSPariSport" target="_blank">📱 Twitter</a></li>
+            <li><a href="https://instagram.com/ksparisport" target="_blank">📸 Instagram</a></li>
+            <li><a href="https://t.me/KSPariSport" target="_blank">✈️ Telegram</a></li>
+            <li><a href="https://tiktok.com/@ksparisport" target="_blank">🎵 TikTok</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="contact-info">
+            <li>📞 07 69 35 91 58</li>
+            <li>📧 contact@ksparisport.fr</li>
+            <li>⏰ Support disponible 7j/7</li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Liens Utiles</h3>
+          <ul class="footer-links">
+            <li><a href="offers.html">Offres VIP</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Blog pronos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 KSPariSport - Leader des pronostics sportifs | Jeu responsable 18+</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="matches.js"></script>
+</body>
+</html>
