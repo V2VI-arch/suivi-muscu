@@ -57,6 +57,11 @@ body{font-family:Inter,system-ui,Segoe UI,Helvetica,Arial,sans-serif;background:
 .nav .btn{vertical-align:middle}
 .btn{background:#fff;border:1px solid #e2e8f0;padding:8px 12px;border-radius:8px;cursor:pointer}
 .btn.primary{background:var(--accent);color:#fff;border-color:transparent}
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 h1{margin-top:18px}
 .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.06);margin-top:12px}
 label{display:block;margin-bottom:12px;color:#111}
@@ -252,6 +257,101 @@ input[type="text"],input[type="email"],input[type="password"]{width:100%;padding
   text-align: right;
   font-size: 0.9rem;
   color: var(--muted);
+}
+
+/* Account Card Styles */
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.account-card {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s;
+}
+
+.account-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.account-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background: var(--accent);
+  color: white;
+}
+
+.member-type {
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.account-content {
+  padding: 15px;
+}
+
+.account-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #111;
+  text-align: center;
+}
+
+.account-email {
+  color: var(--muted);
+  margin: 5px 0;
+  font-size: 0.9em;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-stats {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.stat-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.8em;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: var(--accent);
+  font-size: 1.2em;
+}
+
+.account-action {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--accent);
+  font-size: 0.9em;
+  margin-top: 10px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.account-action:hover {
+  color: #4338ca;
 }
 
 .slogan {

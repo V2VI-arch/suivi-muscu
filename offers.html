@@ -39,7 +39,15 @@
           <li class="muted">✗ VIP+++</li>
           <li class="muted">✗ LIVE & Penalty</li>
         </ul>
-        <button class="btn primary full-width">Choisir cette offre</button>
+        <a href="https://www.paypal.com/paypalme/SimsekKendal" 
+           class="btn primary full-width"
+           onclick="return confirmPayment(50)"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-price="50"
+           aria-label="Acheter le Pack VIP pour 50€">
+          Acheter pour 50€
+        </a>
       </div>
 
       <div class="offer-card premium">
@@ -57,7 +65,15 @@
           <li>✓ LIVE & Penalty</li>
           <li>✓ Support prioritaire 24/7</li>
         </ul>
-        <button class="btn primary full-width">Choisir cette offre</button>
+        <a href="https://www.paypal.com/paypalme/SimsekKendal" 
+           class="btn primary full-width"
+           onclick="return confirmPayment(100)"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-price="100"
+           aria-label="Acheter le Pack VIP PREMIUM pour 100€">
+          Acheter pour 100€
+        </a>
       </div>
     </div>
   </main>
@@ -102,5 +118,18 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    function confirmPayment(amount) {
+      const message = `Vous allez être redirigé vers PayPal pour effectuer le paiement de ${amount}€.\n\n` +
+                     `Instructions :\n` +
+                     `1. Sur PayPal, cliquez sur 'Envoyer'\n` +
+                     `2. Entrez le montant exact : ${amount}€\n` +
+                     `3. Dans le message, indiquez votre email d'inscription\n\n` +
+                     `Votre accès sera activé dès réception du paiement.\n\n` +
+                     `Voulez-vous continuer ?`;
+                     
+      return confirm(message);
+    }
+  </script>
 </body>
 </html>

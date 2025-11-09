@@ -6,6 +6,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const listEl = document.getElementById('accountsList');
   const noEl = document.getElementById('noAccounts');
   const found = [];
+  
+  // Vérifier s'il y a déjà un compte
+  const existingUser = localStorage.getItem('user');
+  if (existingUser) {
+    try {
+      const userData = JSON.parse(existingUser);
+      found.push({ key: 'user', ...userData });
+      // Supprimer tous les autres comptes s'ils existent
+      for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if(key !== 'user') {
+          try {
+            const data = JSON.parse(localStorage.getItem(key));
+            if(data && typeof data === 'object' && ('name' in data || 'email' in data)) {
+              localStorage.removeItem(key);
+            }
+          } catch(e) {}
+        }
+      }
+    } catch(e) {
+      console.error('Erreur lors de la lecture du compte:', e);
+    }
+  }
 
   // Parcours de toutes les clés de localStorage
   for(let i=0;i<localStorage.length;i++){

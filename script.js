@@ -4,6 +4,21 @@ const modal = document.getElementById('signupModal');
 const closeBtn = document.getElementById('closeSignup');
 const form = document.getElementById('signupForm');
 
+// Vérifier si un compte existe déjà
+function checkExistingAccount() {
+    const existingUser = localStorage.getItem('user');
+    if (existingUser) {
+        // Désactiver le bouton d'inscription
+        if (openBtn) {
+            openBtn.textContent = 'Déjà inscrit';
+            openBtn.disabled = true;
+            openBtn.classList.add('disabled');
+        }
+        return true;
+    }
+    return false;
+}
+
 // header sur account.html peut aussi ouvrir le modal (si présent)
 const openBtnsHeader = document.querySelectorAll('#openSignupHeader');
 openBtnsHeader.forEach(b=>b && b.addEventListener('click', ()=>{ window.location.href='index.html'; setTimeout(()=>document.getElementById('openSignup')?.click(),100); }));
