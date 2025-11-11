@@ -193,6 +193,17 @@ input[type="text"],input[type="email"],input[type="password"]{width:100%;padding
   gap: 1rem;
 }
 
+.odds {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 40px;
+  text-align: center;
+  background: rgba(79, 70, 229, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
 .team-name {
   font-weight: 600;
   min-width: 120px;
