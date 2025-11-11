@@ -68,6 +68,23 @@ form && form.addEventListener('submit', (e)=>{
   }
 
   const user = { name, email, password };
+
+  // Stocker dans une liste 'users' (pour afficher tous les comptes)
+  const rawUsers = localStorage.getItem('users');
+  let users = [];
+  try { users = JSON.parse(rawUsers || '[]'); } catch (e) { users = []; }
+
+  // Dédupliquer par email : si déjà présent, on remplace, sinon on ajoute
+  const idx = users.findIndex(u => (u.email || '').toLowerCase() === (email || '').toLowerCase());
+  if (idx !== -1) {
+    users[idx] = user;
+  } else {
+    users.push(user);
+  }
+
+  localStorage.setItem('users', JSON.stringify(users));
+
+  // Conserver également la clé 'user' pour la page Mon compte (compte courant)
   localStorage.setItem('user', JSON.stringify(user));
 
   modal.setAttribute('aria-hidden','true');

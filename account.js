@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   try {
     const user = JSON.parse(userData);
+    const originalEmail = user.email || '';
     
     // Afficher le formulaire avec les données actuelles
     noAccountEl.style.display = 'none';
@@ -35,7 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
         password: document.getElementById('acc_password').value
       };
 
+      // Mettre à jour la clé 'user' (compte courant)
       localStorage.setItem('user', JSON.stringify(updatedUser));
+
+      // Mettre à jour l'entrée correspondante dans 'users' si elle existe
+      try {
+        const raw = localStorage.getItem('users');
+        const users = raw ? JSON.parse(raw) : [];
+        const idx = users.findIndex(u => (u.email||'').toLowerCase() === (originalEmail||'').toLowerCase());
+        if (idx !== -1) {
+          users[idx] = updatedUser;
+        } else {
+          // si non trouvée (edge case), ajouter/update par email
+          const byEmail = users.findIndex(u=> (u.email||'').toLowerCase() === (updatedUser.email||'').toLowerCase());
+          if(byEmail !== -1) users[byEmail] = updatedUser;
+          else users.push(updatedUser);
+        }
+        localStorage.setItem('users', JSON.stringify(users));
+      } catch (err) {
+        console.warn('Impossible de mettre à jour users dans localStorage:', err);
+      }
+
       alert('Modifications sauvegardées avec succès!');
     });
 
