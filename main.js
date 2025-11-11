@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           </div>
         </div>
         <a href="#" class="account-action">Gérer</a>
+        <button class="account-delete" data-email="${escapeHtml(u.email)}" aria-label="Supprimer ${escapeHtml(u.name)}">✖</button>
       </div>
     `;
 
@@ -58,6 +59,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
         e.preventDefault();
         try { localStorage.setItem('user', JSON.stringify(u)); } catch(err){}
         window.location.href = 'account.html';
+      });
+    }
+
+    // Delete handler
+    const delBtn = card.querySelector('.account-delete');
+    if(delBtn){
+      delBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(!confirm(`Supprimer l'utilisateur ${u.name || u.email} ?`)) return;
+        try{
+          users = users.filter(x => (x.email||'').toLowerCase() !== (u.email||'').toLowerCase());
+          localStorage.setItem('users', JSON.stringify(users));
+          // if deleted user is current
+          const current = localStorage.getItem('user');
+          if(current){ try{ const cur = JSON.parse(current); if((cur.email||'').toLowerCase() === (u.email||'').toLowerCase()) localStorage.removeItem('user'); }catch(e){}
+          }
+          card.remove();
+          // update count
+          const countEl = document.getElementById('accountsCount');
+          if(countEl) countEl.textContent = `Comptes trouvés : ${users.length}`;
+        }catch(err){ console.warn('Erreur suppression:', err); alert('Impossible de supprimer le compte'); }
       });
     }
 

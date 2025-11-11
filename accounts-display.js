@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const usersCountEl = document.getElementById('usersCount');
+    if (usersCountEl) usersCountEl.textContent = `(${users.length})`;
+
     if (!users || users.length === 0) {
         accountsContainer.innerHTML = `
             <div class="account-card">
@@ -56,9 +59,41 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <a href="account.html" class="account-action">Gérer</a>
+                    <button class="account-delete" data-email="${escapeHtml(user.email)}" aria-label="Supprimer ${escapeHtml(user.name)}">✖</button>
                 </div>
             `;
             accountsContainer.appendChild(accountCard);
+
+            // attach delete handler
+            const delBtn = accountCard.querySelector('.account-delete');
+            if (delBtn) {
+                delBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (!confirm(`Supprimer l'utilisateur ${user.name || user.email} ?`)) return;
+                    try {
+                        const raw = localStorage.getItem('users');
+                        const arr = raw ? JSON.parse(raw) : [];
+                        const filtered = arr.filter(u => (u.email||'').toLowerCase() !== (user.email||'').toLowerCase());
+                        localStorage.setItem('users', JSON.stringify(filtered));
+                        // if the deleted user was the current 'user', remove it
+                        const current = localStorage.getItem('user');
+                        if (current) {
+                            try {
+                                const curObj = JSON.parse(current);
+                                if ((curObj.email||'').toLowerCase() === (user.email||'').toLowerCase()) {
+                                    localStorage.removeItem('user');
+                                }
+                            } catch(e){}
+                        }
+                        // remove card and update count
+                        accountCard.remove();
+                        if (usersCountEl) usersCountEl.textContent = `(${filtered.length})`;
+                    } catch (err) {
+                        console.warn('Erreur suppression utilisateur:', err);
+                        alert('Impossible de supprimer l\'utilisateur.');
+                    }
+                });
+            }
         });
     } catch (e) {
         console.error('Erreur lors de l\'affichage des comptes:', e);
