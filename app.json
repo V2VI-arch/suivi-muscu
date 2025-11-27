@@ -1,0 +1,7 @@
+{
+  "name": "Suivi Muscu",
+  "description": "Application de suivi d'entraînements musculaires",
+  "repository": "https://github.com/V2VI-arch/suivi-muscu",
+  "keywords": ["fitness", "workout", "tracking", "gym"],
+  "buildpacks": []
+}
