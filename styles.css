@@ -846,6 +846,195 @@ textarea {
   color: var(--muted);
 }
 
+/* Body Map Styles */
+.body-map-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.body-map-container {
+  grid-column: 1 / -1;
+}
+
+.body-map-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.body-map-svg {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.02) 0%, rgba(79, 70, 229, 0.01) 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+}
+
+.muscle-group {
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.muscle-group:hover {
+  filter: brightness(0.95);
+}
+
+.heatmap-legend {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(79, 70, 229, 0.02) 100%);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.legend-gradient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.legend-bar {
+  width: 200px;
+  height: 30px;
+  background: linear-gradient(to right, #e0e7ff 0%, #a5b4fc 25%, #818cf8 50%, #6366f1 75%, #312e81 100%);
+  border-radius: 6px;
+  border: 1px solid #4f46e5;
+}
+
+.legend-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.muscle-details {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.02) 0%, rgba(79, 70, 229, 0.01) 100%);
+}
+
+.muscle-detail-card {
+  padding: 1rem;
+}
+
+.muscle-detail-card h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.muscle-detail-card h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.detail-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-stat {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-stat .label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.detail-stat .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.exercise-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.exercise-item {
+  background: white;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exercise-item strong {
+  color: #111;
+  font-size: 1rem;
+}
+
+.exercise-item span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.exercise-item small {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1024px) {
+  .body-map-section {
+    grid-template-columns: 1fr;
+  }
+
+  .body-map-svg {
+    max-width: 350px;
+  }
+
+  .detail-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .body-map-section {
+    grid-template-columns: 1fr;
+  }
+
+  .body-map-svg {
+    max-width: 280px;
+  }
+
+  .detail-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .legend-gradient {
+    flex-direction: column;
+  }
+
+  .legend-bar {
+    width: 100%;
+  }
+}
+
 /* Statistics Page Styles */
 .filter-section {
   background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(79, 70, 229, 0.02) 100%);

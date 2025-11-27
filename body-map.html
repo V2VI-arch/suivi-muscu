@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Carte du corps — Suivi Muscu</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="dashboard.html">Suivi Muscu</a>
+      <nav class="nav">
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="trainings.html">Entraînements</a>
+        <a href="stats.html">Statistiques</a>
+        <a href="body-map.html" class="active">Carte du corps</a>
+        <a href="account.html">Mon compte</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Carte du corps — Intensité d'entraînement</h1>
+
+    <div class="body-map-section">
+      <!-- Filtres -->
+      <div class="card filter-section">
+        <h2>Filtres</h2>
+        <div class="filter-row">
+          <div class="form-group">
+            <label for="mapMetric">Métrique</label>
+            <select id="mapMetric">
+              <option value="volume">Volume total (kg)</option>
+              <option value="reps">Répétitions totales</option>
+              <option value="count">Nombre d'entraînements</option>
+              <option value="avgWeight">Poids moyen</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mapPeriod">Période</label>
+            <select id="mapPeriod">
+              <option value="all">Tout le temps</option>
+              <option value="month">Ce mois</option>
+              <option value="week">Cette semaine</option>
+              <option value="custom">Personnalisé</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schéma du corps -->
+      <div class="card body-map-container">
+        <h2>Intensité par groupe musculaire</h2>
+        <div class="body-map-wrapper">
+          <svg class="body-map-svg" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+            <!-- Légende -->
+            <defs>
+              <linearGradient id="heatmapGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#e0e7ff;stop-opacity:1" />
+                <stop offset="25%" style="stop-color:#a5b4fc;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#818cf8;stop-opacity:1" />
+                <stop offset="75%" style="stop-color:#6366f1;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#312e81;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+
+            <!-- Tête -->
+            <circle id="head" class="muscle-group" cx="200" cy="50" r="30" data-group="Cou" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Cou</title>
+            </circle>
+
+            <!-- Poitrine -->
+            <rect id="chest" class="muscle-group" x="150" y="90" width="100" height="80" rx="10" data-group="Poitrine" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Poitrine</title>
+            </rect>
+
+            <!-- Épaules -->
+            <ellipse id="shoulders" class="muscle-group" cx="200" cy="85" rx="60" ry="20" data-group="Épaules" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Épaules</title>
+            </ellipse>
+
+            <!-- Dos -->
+            <rect id="back" class="muscle-group" x="150" y="90" width="100" height="80" rx="10" data-group="Dos" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;opacity:0;" pointerevents="none">
+              <title>Dos</title>
+            </rect>
+
+            <!-- Bras gauche -->
+            <rect id="leftArm" class="muscle-group" x="100" y="100" width="45" height="100" rx="10" data-group="Bras" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Bras gauche</title>
+            </rect>
+
+            <!-- Bras droit -->
+            <rect id="rightArm" class="muscle-group" x="255" y="100" width="45" height="100" rx="10" data-group="Bras" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Bras droit</title>
+            </rect>
+
+            <!-- Avant-bras gauche -->
+            <rect id="leftForearm" class="muscle-group" x="100" y="200" width="45" height="80" rx="10" data-group="Avant-bras" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Avant-bras gauche</title>
+            </rect>
+
+            <!-- Avant-bras droit -->
+            <rect id="rightForearm" class="muscle-group" x="255" y="200" width="45" height="80" rx="10" data-group="Avant-bras" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Avant-bras droit</title>
+            </rect>
+
+            <!-- Abdominaux -->
+            <rect id="abs" class="muscle-group" x="160" y="170" width="80" height="70" rx="8" data-group="Abdominaux" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Abdominaux</title>
+            </rect>
+
+            <!-- Jambe gauche (cuisse) -->
+            <rect id="leftThigh" class="muscle-group" x="120" y="280" width="60" height="100" rx="10" data-group="Jambes" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Jambe gauche (cuisse)</title>
+            </rect>
+
+            <!-- Jambe droite (cuisse) -->
+            <rect id="rightThigh" class="muscle-group" x="220" y="280" width="60" height="100" rx="10" data-group="Jambes" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Jambe droite (cuisse)</title>
+            </rect>
+
+            <!-- Mollet gauche -->
+            <rect id="leftCalf" class="muscle-group" x="130" y="380" width="40" height="80" rx="8" data-group="Mollets" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Mollet gauche</title>
+            </rect>
+
+            <!-- Mollet droit -->
+            <rect id="rightCalf" class="muscle-group" x="230" y="380" width="40" height="80" rx="8" data-group="Mollets" style="fill:#e0e7ff;stroke:#4f46e5;stroke-width:2;cursor:pointer;">
+              <title>Mollet droit</title>
+            </rect>
+
+            <!-- Texte labels -->
+            <text x="200" y="55" text-anchor="middle" font-size="12" fill="#333" pointer-events="none">Cou</text>
+            <text x="200" y="135" text-anchor="middle" font-size="12" fill="#333" pointer-events="none">Poitrine</text>
+            <text x="122" y="155" text-anchor="middle" font-size="11" fill="#333" pointer-events="none">Bras</text>
+            <text x="278" y="155" text-anchor="middle" font-size="11" fill="#333" pointer-events="none">Bras</text>
+            <text x="200" y="210" text-anchor="middle" font-size="12" fill="#333" pointer-events="none">Abs</text>
+            <text x="150" y="335" text-anchor="middle" font-size="11" fill="#333" pointer-events="none">Jambes</text>
+            <text x="250" y="335" text-anchor="middle" font-size="11" fill="#333" pointer-events="none">Jambes</text>
+            <text x="150" y="425" text-anchor="middle" font-size="10" fill="#333" pointer-events="none">Mollets</text>
+            <text x="250" y="425" text-anchor="middle" font-size="10" fill="#333" pointer-events="none">Mollets</text>
+          </svg>
+        </div>
+
+        <!-- Légende de couleurs -->
+        <div class="heatmap-legend">
+          <div class="legend-title">Intensité</div>
+          <div class="legend-gradient">
+            <span class="legend-label">Faible</span>
+            <div class="legend-bar"></div>
+            <span class="legend-label">Élevé</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Détails du groupe sélectionné -->
+      <div class="card muscle-details">
+        <h2>Détails du groupe musculaire</h2>
+        <div id="muscleInfo">
+          <p class="text-muted">Cliquez sur une partie du corps pour voir les détails</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>À propos</h3>
+          <ul class="footer-links">
+            <li><a href="#">À propos de Suivi Muscu</a></li>
+            <li><a href="#">Nous contacter</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conseils d'entraînement</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Données</h3>
+          <ul class="footer-links">
+            <li><a href="#">Exporter mes données</a></li>
+            <li><a href="#">Importer des données</a></li>
+            <li><a href="#">Réinitialiser</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Suivi Muscu - Votre compagnon d'entraînement</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="body-map.js"></script>
+</body>
+</html>
