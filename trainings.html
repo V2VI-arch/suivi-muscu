@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Entraînements — Suivi Muscu</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="dashboard.html">Suivi Muscu</a>
+      <nav class="nav">
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="trainings.html" class="active">Entraînements</a>
+        <a href="stats.html">Statistiques</a>
+        <a href="account.html">Mon compte</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Mes entraînements</h1>
+
+    <div class="trainings-layout">
+      <!-- Formulaire d'ajout -->
+      <section class="card form-section">
+        <h2>Ajouter un entraînement</h2>
+        <form id="trainingForm">
+          <div class="form-group">
+            <label for="trainingDate">Date *</label>
+            <input type="date" id="trainingDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="muscleGroup">Groupe musculaire *</label>
+            <select id="muscleGroup" required>
+              <option value="">Choisir un groupe</option>
+              <option value="Poitrine">Poitrine</option>
+              <option value="Dos">Dos</option>
+              <option value="Épaules">Épaules</option>
+              <option value="Bras">Bras</option>
+              <option value="Avant-bras">Avant-bras</option>
+              <option value="Jambes">Jambes</option>
+              <option value="Mollets">Mollets</option>
+              <option value="Abdominaux">Abdominaux</option>
+              <option value="Cardio">Cardio</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exercise">Exercice *</label>
+            <input type="text" id="exercise" placeholder="ex: Développé couché" required>
+          </div>
+
+          <div class="row-form">
+            <div class="form-group">
+              <label for="series">Séries *</label>
+              <input type="number" id="series" min="1" required>
+            </div>
+            <div class="form-group">
+              <label for="reps">Répétitions *</label>
+              <input type="number" id="reps" min="1" required>
+            </div>
+            <div class="form-group">
+              <label for="weight">Poids (kg) *</label>
+              <input type="number" id="weight" min="0" step="0.5" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea id="notes" placeholder="Commentaires sur l'entraînement..." rows="3"></textarea>
+          </div>
+
+          <div class="row">
+            <button type="submit" class="btn primary">Ajouter l'entraînement</button>
+            <button type="reset" class="btn">Réinitialiser</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Liste des entraînements -->
+      <section class="card list-section">
+        <h2>Historique des entraînements</h2>
+        
+        <div class="filter-controls">
+          <input type="text" id="filterMuscle" placeholder="Filtrer par groupe musculaire...">
+          <select id="sortBy">
+            <option value="recent">Plus récents d'abord</option>
+            <option value="oldest">Plus anciens d'abord</option>
+            <option value="volume">Par volume (desc)</option>
+          </select>
+        </div>
+
+        <div id="trainingsList">
+          <p class="text-muted">Aucun entraînement enregistré. Commencez par ajouter un entraînement!</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>À propos</h3>
+          <ul class="footer-links">
+            <li><a href="#">À propos de Suivi Muscu</a></li>
+            <li><a href="#">Nous contacter</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conseils d'entraînement</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Données</h3>
+          <ul class="footer-links">
+            <li><a href="#">Exporter mes données</a></li>
+            <li><a href="#">Importer des données</a></li>
+            <li><a href="#">Réinitialiser</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Suivi Muscu - Votre compagnon d'entraînement</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="trainings.js"></script>
+</body>
+</html>

@@ -77,14 +77,14 @@ async function fetchRealMatchesWithOdds() {
 function getRealMatchesData() {
   const now = new Date();
   
-  // Matchs réels à venir avec cotes réelles
+  // Matchs réels à venir avec cotes réelles et HEURES RÉELLES
   return [
     {
       id: 1,
       home: "Manchester City",
       away: "Liverpool",
       league: "Premier League",
-      date: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+      date: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3, 17, 30, 0).toISOString(), // 17h30
       probabilities: {
         home: 48,
         draw: 26,
@@ -102,7 +102,7 @@ function getRealMatchesData() {
       home: "Real Madrid",
       away: "Barcelona",
       league: "La Liga",
-      date: new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000).toISOString(),
+      date: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4, 21, 0, 0).toISOString(), // 21h00
       probabilities: {
         home: 44,
         draw: 28,
@@ -120,7 +120,7 @@ function getRealMatchesData() {
       home: "Bayern Munich",
       away: "Borussia Dortmund",
       league: "Bundesliga",
-      date: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString(),
+      date: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2, 20, 30, 0).toISOString(), // 20h30
       probabilities: {
         home: 58,
         draw: 24,
@@ -138,7 +138,7 @@ function getRealMatchesData() {
       home: "Paris Saint-Germain",
       away: "Olympique Marseille",
       league: "Ligue 1",
-      date: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+      date: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5, 20, 0, 0).toISOString(), // 20h00
       probabilities: {
         home: 62,
         draw: 22,

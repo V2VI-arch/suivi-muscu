@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Statistiques — Suivi Muscu</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="dashboard.html">Suivi Muscu</a>
+      <nav class="nav">
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="trainings.html">Entraînements</a>
+        <a href="stats.html" class="active">Statistiques</a>
+        <a href="account.html">Mon compte</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Mes statistiques</h1>
+
+    <!-- Filtres -->
+    <div class="card filter-section">
+      <h2>Filtres</h2>
+      <div class="filter-row">
+        <div class="form-group">
+          <label for="startDate">Du</label>
+          <input type="date" id="startDate">
+        </div>
+        <div class="form-group">
+          <label for="endDate">Au</label>
+          <input type="date" id="endDate">
+        </div>
+        <button id="applyFilters" class="btn primary">Appliquer</button>
+        <button id="resetFilters" class="btn">Réinitialiser</button>
+      </div>
+    </div>
+
+    <!-- Statistiques générales -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">Entraînements totaux</div>
+        <div class="stat-value" id="statTotalTrainings">0</div>
+        <div class="stat-footer" id="statTrainingsChange">-</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">Durée totale (jours)</div>
+        <div class="stat-value" id="statTotalDays">0</div>
+        <div class="stat-footer">-</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">Volume total (kg)</div>
+        <div class="stat-value" id="statTotalVolume">0</div>
+        <div class="stat-footer" id="statVolumeChange">-</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">Poids moyen</div>
+        <div class="stat-value" id="statAvgWeight">0kg</div>
+        <div class="stat-footer">-</div>
+      </div>
+    </div>
+
+    <!-- Performance par groupe musculaire -->
+    <div class="card">
+      <h2>💪 Performance par groupe musculaire</h2>
+      <div id="muscleGroupStats">
+        <p class="text-muted">Aucune donnée disponible.</p>
+      </div>
+    </div>
+
+    <!-- Progression des exercices -->
+    <div class="card">
+      <h2>📈 Progression des exercices</h2>
+      <div class="form-group">
+        <label for="exerciseSelect">Sélectionner un exercice</label>
+        <select id="exerciseSelect">
+          <option value="">Choisir un exercice...</option>
+        </select>
+      </div>
+      <div id="exerciseProgress">
+        <p class="text-muted">Sélectionnez un exercice pour voir sa progression.</p>
+      </div>
+    </div>
+
+    <!-- Comparaison semaine/mois -->
+    <div class="card">
+      <h2>📊 Comparaison des périodes</h2>
+      <div id="periodComparison" class="comparison-table">
+        <p class="text-muted">Aucune donnée disponible.</p>
+      </div>
+    </div>
+
+    <!-- Meilleurs performances -->
+    <div class="card">
+      <h2>🏆 Meilleurs performances</h2>
+      <div id="topPerformances">
+        <p class="text-muted">Aucune donnée disponible.</p>
+      </div>
+    </div>
+
+    <!-- Télécharger les données -->
+    <div class="card">
+      <h2>📥 Données</h2>
+      <div class="row">
+        <button id="exportBtn" class="btn primary">Exporter en CSV</button>
+        <button id="exportJsonBtn" class="btn">Exporter en JSON</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>À propos</h3>
+          <ul class="footer-links">
+            <li><a href="#">À propos de Suivi Muscu</a></li>
+            <li><a href="#">Nous contacter</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conseils d'entraînement</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Données</h3>
+          <ul class="footer-links">
+            <li><a href="#">Exporter mes données</a></li>
+            <li><a href="#">Importer des données</a></li>
+            <li><a href="#">Réinitialiser</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Suivi Muscu - Votre compagnon d'entraînement</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="stats.js"></script>
+</body>
+</html>

@@ -3,28 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mon compte — KSPariSport</title>
+  <title>Mon compte — Suivi Muscu</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">KSPariSport</a>
+      <a class="brand" href="dashboard.html">Suivi Muscu</a>
       <nav class="nav">
-        <a href="index.html">Accueil</a>
-        <a href="offers.html">Offres VIP</a>
-        <a href="main.html" class="btn">Tous les comptes</a>
-        <a href="account.html">Mon compte</a>
-        <button id="openSignupHeader" class="btn primary">Inscription</button>
+        <a href="dashboard.html">Tableau de bord</a>
+        <a href="trainings.html">Entraînements</a>
+        <a href="stats.html">Statistiques</a>
+        <a href="account.html" class="active">Mon compte</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <h1>KSPariSport</h1>
+    <h1>Mon profil</h1>
     <div id="noAccount" class="card">
-      <p>Aucun compte trouvé. Un seul compte est autorisé sur KSPariSport.</p>
-      <a href="index.html" class="btn">S'inscrire</a>
+      <p>Aucun profil trouvé. Créez votre profil pour commencer à suivre vos entraînements.</p>
+      <a href="dashboard.html" class="btn">Aller au tableau de bord</a>
     </div>
 
     <div id="accountCard" class="card" style="display:none;">
@@ -35,8 +34,11 @@
         <label>Email
           <input type="email" id="acc_email" required>
         </label>
-        <label>Mot de passe
-          <input type="password" id="acc_password" required minlength="6">
+        <label>Objectif d'entraînement
+          <textarea id="acc_goal" placeholder="Ex: Gagner en muscle, améliorer ma force..."></textarea>
+        </label>
+        <label>Poids corporel (kg)
+          <input type="number" id="acc_weight" min="0" step="0.5">
         </label>
         <div class="row">
           <button type="submit" class="btn primary">Sauvegarder</button>
@@ -50,37 +52,35 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>Suivez-nous</h3>
-          <ul class="social-links">
-            <li><a href="https://twitter.com/KSPariSport" target="_blank">📱 Twitter</a></li>
-            <li><a href="https://instagram.com/ksparisport" target="_blank">📸 Instagram</a></li>
-            <li><a href="https://t.me/KSPariSport" target="_blank">✈️ Telegram</a></li>
-            <li><a href="https://tiktok.com/@ksparisport" target="_blank">🎵 TikTok</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Contact</h3>
-          <ul class="contact-info">
-            <li>📞 07 69 35 91 58</li>
-            <li>📧 contact@ksparisport.fr</li>
-            <li>⏰ Support disponible 7j/7</li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Liens Utiles</h3>
+          <h3>À propos</h3>
           <ul class="footer-links">
-            <li><a href="offers.html">Offres VIP</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="#">À propos de Suivi Muscu</a></li>
+            <li><a href="#">Nous contacter</a></li>
             <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Blog pronos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conseils d'entraînement</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Données</h3>
+          <ul class="footer-links">
+            <li><a href="#">Exporter mes données</a></li>
+            <li><a href="#">Importer des données</a></li>
+            <li><a href="#">Réinitialiser</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 KSPariSport - Leader des pronostics sportifs | Jeu responsable 18+</p>
+        <p>&copy; 2025 Suivi Muscu - Votre compagnon d'entraînement</p>
       </div>
     </div>
   </footer>
