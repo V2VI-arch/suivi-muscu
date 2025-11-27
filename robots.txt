@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://ksparisport.fr/sitemap.xml
-
-Disallow: /admin/
-Disallow: /private/
