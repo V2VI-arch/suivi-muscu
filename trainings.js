@@ -1,15 +1,69 @@
 // Gestionnaire des entraînements
 const trainingManager = new TrainingManager();
 
+// Créer une instance AccountManager pour vérifier le compte
+class AccountManager {
+  constructor() {
+    this.storageKey = 'userAccount';
+    this.loadAccount();
+  }
+
+  loadAccount() {
+    const data = localStorage.getItem(this.storageKey);
+    this.account = data ? JSON.parse(data) : null;
+  }
+
+  getAccount() {
+    return this.account;
+  }
+
+  hasAccount() {
+    return this.account !== null;
+  }
+}
+
+const accountManager = new AccountManager();
+
 document.addEventListener('DOMContentLoaded', () => {
-  initializeForm();
-  displayTrainings();
-  setupFilters();
-  
-  // Définir la date d'aujourd'hui par défaut
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById('trainingDate').value = today;
+  // Vérifier si l'utilisateur a un compte
+  if (!accountManager.hasAccount()) {
+    showAccountRequiredMessage();
+    disableForm();
+  } else {
+    initializeForm();
+    displayTrainings();
+    setupFilters();
+    
+    // Définir la date d'aujourd'hui par défaut
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('trainingDate').value = today;
+  }
 });
+
+function showAccountRequiredMessage() {
+  const container = document.querySelector('main .container');
+  if (container) {
+    const message = document.createElement('div');
+    message.className = 'card alert-card';
+    message.innerHTML = `
+      <h2>⚠️ Compte requis</h2>
+      <p>Vous devez d'abord créer un compte pour enregistrer vos entraînements.</p>
+      <a href="account.html" class="btn primary">Créer mon compte</a>
+    `;
+    
+    const mainContent = container.querySelector('h1');
+    if (mainContent) {
+      mainContent.after(message);
+    }
+  }
+}
+
+function disableForm() {
+  const form = document.getElementById('trainingForm');
+  const inputs = form.querySelectorAll('input, select, textarea, button');
+  inputs.forEach(input => input.disabled = true);
+  form.style.opacity = '0.5';
+}
 
 function initializeForm() {
   const form = document.getElementById('trainingForm');

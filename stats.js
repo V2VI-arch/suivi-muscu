@@ -1,11 +1,57 @@
 // Gestionnaire des statistiques
 const trainingManager = new TrainingManager();
 
+// Créer une instance AccountManager pour vérifier le compte
+class AccountManager {
+  constructor() {
+    this.storageKey = 'userAccount';
+    this.loadAccount();
+  }
+
+  loadAccount() {
+    const data = localStorage.getItem(this.storageKey);
+    this.account = data ? JSON.parse(data) : null;
+  }
+
+  getAccount() {
+    return this.account;
+  }
+
+  hasAccount() {
+    return this.account !== null;
+  }
+}
+
+const accountManager = new AccountManager();
+
 document.addEventListener('DOMContentLoaded', () => {
-  initializeDateFilters();
-  loadStats();
-  setupEventListeners();
+  // Vérifier si l'utilisateur a un compte
+  if (!accountManager.hasAccount()) {
+    showAccountRequiredMessage();
+  } else {
+    initializeDateFilters();
+    loadStats();
+    setupEventListeners();
+  }
 });
+
+function showAccountRequiredMessage() {
+  const container = document.querySelector('main .container');
+  if (container) {
+    const message = document.createElement('div');
+    message.className = 'card alert-card';
+    message.innerHTML = `
+      <h2>⚠️ Compte requis</h2>
+      <p>Vous devez d'abord créer un compte pour voir vos statistiques.</p>
+      <a href="account.html" class="btn primary">Créer mon compte</a>
+    `;
+    
+    const mainContent = container.querySelector('h1');
+    if (mainContent) {
+      mainContent.after(message);
+    }
+  }
+}
 
 function initializeDateFilters() {
   const today = new Date();
